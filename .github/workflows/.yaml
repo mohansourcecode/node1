@@ -32,6 +32,7 @@ jobs:
         with:
           username: ${{secrets.docker_username}}
           password: ${{secrets.docker_password}}
+          
       - name: bulding and pushing the docker image to the dockerr GitHub
         uses: docker/build-push-action@v5
         with:
