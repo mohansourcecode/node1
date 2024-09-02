@@ -27,23 +27,8 @@ jobs:
           scan-type: 'fs'
           scan-ref: '.'
           trivy-config: trivy.yaml
-
-      # - name: Setup SonarQube Scanner
-      #   uses: SonarSource/sonarcloud-github-action@v2
-      #   with:
-      #     sonar-token: ${{ secrets.SONAR_TOKEN }}
-      #     sonar-host-url: 'https://your-sonarqube-server-url'  # Replace with your SonarQube URL
-
-      # - name: Install Dependencies
-      #   run: |
-      #     # Install your project dependencies here
-      #     # For example, for Node.js:
-      #     npm install
-
-      # - name: Run SonarQube Scanner
-      #   run: |
-      #     sonar-scanner \
-      #       -Dsonar.projectKey=your_project_key \
-      #       -Dsonar.sources=src \
-      #       -Dsonar.host.url=https://your-sonarqube-server-url \
-      #       -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: docker login1
+        uses: docker/login-action@v3
+        with:
+          username: ${{secrets.docker_username}}
+          password: ${{secrets.docker_password}}
