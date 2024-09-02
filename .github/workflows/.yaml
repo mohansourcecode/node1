@@ -16,23 +16,28 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
-
-      - name: Setup SonarQube Scanner
-        uses: SonarSource/sonarcloud-github-action@v2
+      - name: install node 
+        uses: actions/setup-node@v4
         with:
-          sonar-token: ${{ secrets.SONAR_TOKEN }}
-          sonar-host-url: 'https://your-sonarqube-server-url'  # Replace with your SonarQube URL
+          node-version: 20
+          registry-url: https://registry.npmjs.org/
 
-      - name: Install Dependencies
-        run: |
-          # Install your project dependencies here
-          # For example, for Node.js:
-          npm install
+      # - name: Setup SonarQube Scanner
+      #   uses: SonarSource/sonarcloud-github-action@v2
+      #   with:
+      #     sonar-token: ${{ secrets.SONAR_TOKEN }}
+      #     sonar-host-url: 'https://your-sonarqube-server-url'  # Replace with your SonarQube URL
 
-      - name: Run SonarQube Scanner
-        run: |
-          sonar-scanner \
-            -Dsonar.projectKey=your_project_key \
-            -Dsonar.sources=src \
-            -Dsonar.host.url=https://your-sonarqube-server-url \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      # - name: Install Dependencies
+      #   run: |
+      #     # Install your project dependencies here
+      #     # For example, for Node.js:
+      #     npm install
+
+      # - name: Run SonarQube Scanner
+      #   run: |
+      #     sonar-scanner \
+      #       -Dsonar.projectKey=your_project_key \
+      #       -Dsonar.sources=src \
+      #       -Dsonar.host.url=https://your-sonarqube-server-url \
+      #       -Dsonar.login=${{ secrets.SONAR_TOKEN }}
