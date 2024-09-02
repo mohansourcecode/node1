@@ -39,3 +39,7 @@ jobs:
           context: .
           push: true
           tags: ${{secrets.docker_username}}/mohannode:1.0
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.20.0
+        with:
+          image-ref: 'docker.io/${{secrets.docker_username}}/mohannode:1.0'
