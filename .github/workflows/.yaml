@@ -1,0 +1,38 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonar:
+    name: Run SonarQube Analysis
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup SonarQube Scanner
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          sonar-token: ${{ secrets.SONAR_TOKEN }}
+          sonar-host-url: 'https://your-sonarqube-server-url'  # Replace with your SonarQube URL
+
+      - name: Install Dependencies
+        run: |
+          # Install your project dependencies here
+          # For example, for Node.js:
+          npm install
+
+      - name: Run SonarQube Scanner
+        run: |
+          sonar-scanner \
+            -Dsonar.projectKey=your_project_key \
+            -Dsonar.sources=src \
+            -Dsonar.host.url=https://your-sonarqube-server-url \
+            -Dsonar.login=${{ secrets.SONAR_TOKEN }}
